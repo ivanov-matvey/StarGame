@@ -1,6 +1,5 @@
 import pygame
 
-
 clock = pygame.time.Clock()
 
 pygame.init()
@@ -8,7 +7,7 @@ pygame.init()
 width = 720
 height = 720
 screen = pygame.display.set_mode((width, height))
-bg = pygame.image.load('images/bg.png').convert()
+bg = pygame.image.load('images/bg.png')
 bg = pygame.transform.scale(bg, (width, height))
 
 pygame.display.set_caption('StarGame')
@@ -27,14 +26,15 @@ flight = [
 player_anim_count = 0
 i = 0
 bg_y = 0
+bg_x = 0
 
 running = True
 while running:
 
     clock.tick(60)
 
-    screen.blit(bg, (0, bg_y))
-    screen.blit(bg, (0, bg_y-height))
+    background1 = screen.blit(bg, (bg_x, bg_y))
+    background2 = screen.blit(bg, (bg_x, bg_y - height))
     screen.blit(flight[player_anim_count], (320, 320))
 
     bg_y += 1
