@@ -28,6 +28,14 @@ i = 0
 bg_y = 0
 bg_x = 0
 
+player_x = 320
+player_y = 320
+speed = 7
+to_up = False
+to_down = False
+to_left = False
+to_right = False
+
 running = True
 while running:
 
@@ -35,7 +43,7 @@ while running:
 
     background1 = screen.blit(bg, (bg_x, bg_y))
     background2 = screen.blit(bg, (bg_x, bg_y - height))
-    screen.blit(flight[player_anim_count], (320, 320))
+    screen.blit(flight[player_anim_count], (player_x, player_y))
 
     bg_y += 1
     if bg_y == 720:
@@ -60,3 +68,32 @@ while running:
         if event.type == pygame.QUIT:
             running = False
             pygame.quit()
+
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP:
+                to_up = True
+            if event.key == pygame.K_DOWN:
+                to_down = True
+            if event.key == pygame.K_LEFT:
+                to_left = True
+            if event.key == pygame.K_RIGHT:
+                to_right = True
+
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_UP:
+                to_up = False
+            if event.key == pygame.K_DOWN:
+                to_down = False
+            if event.key == pygame.K_LEFT:
+                to_left = False
+            if event.key == pygame.K_RIGHT:
+                to_right = False
+
+    if to_up:
+        player_y -= speed
+    if to_down:
+        player_y += speed
+    if to_left:
+        player_x -= speed
+    if to_right:
+        player_x += speed
